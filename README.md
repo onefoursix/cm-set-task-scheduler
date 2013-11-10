@@ -43,14 +43,14 @@ This example assumes you have already set a Task Scheduler.  In this example I h
 
 ![](images/image-1.jpg)
 
-An initial set of queue names should also be set in advance.  In this example, queue names remain constant across the different scheduler configurations.  Queue names could be set dynamically along with the scheduler configs, but in this example they are static; the same queues are simply configured differently by the different schedulers :
+An initial set of queue names should also be set in advance.  In this example, the two queue named "default" and "mark" remain constant across the different scheduler configurations.  Queue names could be set dynamically along with the scheduler configs, but in this example they are static; the same queues are simply configured differently by the different schedulers :
 
 ![](images/image-2.jpg)
 
 Finally, I have started this example by copying the text of my first scheduler config "capacity-scheduler-1.xml" into CM's Capacity Scheduler Configuration:
 
-![](images/image-3.jpg)
+![](images/image-4.jpg)
 
 The running Task Scheduler can be seen in Job Tracker's UI:
 
-![](images/image-4.jpg)
+![](images/image-3.jpg)
