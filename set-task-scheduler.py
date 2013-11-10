@@ -1,13 +1,14 @@
 #!/usr/bin/python
 
 ## *******************************************************************************************
-## set-agent-config.py 
+## set-task-scheduler.py 
 ## 
-## Example of how to set the Flume Configuration file for a Flume Agent using the Cloudera Manager AP
+## Example of how to set a Task Scheduler Configuration using the Cloudera Manager API,
+##   as well as how to refresh a running Job Tracker to deploy the change without a restart
 ## 
-## Usage: set-agent-config.py <agent-id> <config-file>
+## Usage: set-task-scheduler.py  <config-file>
 ##
-##        for example:  set-agent-config.py agent1 flume.conf
+##        for example:  set-task-scheduler.py conf/capacity-scheduler-1.xml
 ## 
 ##        (the rest of the values are set in the script below)
 ## 
@@ -35,32 +36,41 @@ cm_password = "admin"
 ## Cluster Name
 cluster_name = "Cluster 1 - CDH4"
 
-## Name of Flume Service
-flume_service_name = "Flume-NG-Service"
+## Name of MapReduce Service
+mr_service_name = "mapreduce1"
+
+## Service config property name
+config_property_name = "mapred_capacity_scheduler_configuration"   # Capacity Scheduler config property name
+# config_property_name = "mapred_fairscheduler_allocation"         # Fair Scheduler config property name
 
 ## ******************************************
 
 
-if len(sys.argv) != 3:
+if len(sys.argv) != 2:
   print "Error: Wrong number of arguments"
-  print "Usage: set-agent-config.py <agent-id> <config-file>"
-  print "Example: set-agent-config.py agent1 flume.conf"
+  print "Usage: set-task-scheduler.py  <config-file>"
+  print "Example: set-task-scheduler.py conf/capacity-scheduler-1.xml"
   quit(1)
 
-agent_ref = sys.argv[1]
 
-config_file =  sys.argv[2]
+config_file =  sys.argv[1]
 
-print "Setting config file '" + config_file + "' for Agent '" + agent_ref + "' for Flume Service '" + flume_service_name + "' on cluster '" + cluster_name + "'..."
+print "Setting task scheduler config file '" + config_file + "' for MapReduce Service '" + mr_service_name + "' on cluster '" + cluster_name + "'..."
 
-## load the flume.conf file
+## load the task scheduler config file
 f = open(config_file,'r')
-flume_conf = ""
+task_scheduler_conf = ""
 while 1:
     line = f.readline()
     if not line:break
-    flume_conf += line
+    task_scheduler_conf += line
 f.close()
+
+print "-- loading new config --------------------------"
+print task_scheduler_conf
+print "------------------------------------------------"
+
+
 
 ## Get the CM api
 api = ApiResource(server_host=cm_host, server_port=cm_port, username=cm_login, password=cm_password)
@@ -68,13 +78,19 @@ api = ApiResource(server_host=cm_host, server_port=cm_port, username=cm_login, p
 ## Get the cluster
 cluster = api.get_cluster(cluster_name)
 
-## Get the Flume Service
-flume_service = cluster.get_service(flume_service_name)
+## Get the MR Service
+mr_service = cluster.get_service(mr_service_name)
 
-## Get the Agent
-role = flume_service.get_role(agent_ref)
+## Get the JobTracker
+for role in mr_service.get_all_roles():
+#  if role.type == 'JOBTRACKER':
+   print "role:" + role.type + " " + role.name  
+   job_tracker = role
 
-## Set the flume.conf in the config
-role.update_config({"agent_config_file" : flume_conf})
+## Set the task scheduler config in the MR Service
+#job_tracker.update_config({config_property_name : task_scheduler_conf})
+mr_service.update_config({config_property_name : task_scheduler_conf})
 
-print "New configuration set!"
+print "New task scheduler configuration set\n"
+print "Refreshing the Job Tracker"
+print "Done"
