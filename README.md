@@ -54,7 +54,7 @@ Finally, I have started this example by copying the text of my first scheduler c
 ![](images/image-4.jpg)
 
 
-The running Task Scheduler can be seen in Job Tracker's UI:
+The running Task Scheduler's queues and configurations can be seen in Job Tracker's UI.  Note that the "mark" queue gets 70% of capacity:
 
 ![](images/image-3.jpg)
 
