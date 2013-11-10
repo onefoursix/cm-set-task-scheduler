@@ -2,7 +2,7 @@
 cm-api-set-task-scheduler
 =======================
 
-This project provides an example of using Cloudera Manager's Python API Client to set a MapReduce Task Scheduler config file and to reload a running JobTracker so the new scheduler is put into effect.  This may be desirable for shops that wish to dynamically change queue capacities or limits at different times of day, for example to allow certain batch jobs to consume a higher percentage or resources between midnight and 3:00am than during working hours.
+This project provides an example of using Cloudera Manager's Python API Client to set a MapReduce Task Scheduler configuration file and to reload a running JobTracker so the new scheduler configuration is put into effect.  This may be desirable for shops that wish to dynamically change queue capacities or limits at different times of day, for example to allow certain batch jobs to consume a higher percentage or resources between midnight and 3:00am than during working hours.
 
 More information: [Cloudera Manager](http://www.cloudera.com/content/cloudera/en/products/cloudera-manager.html), [CM API Client](http://cloudera.github.io/cm_api/)
 
