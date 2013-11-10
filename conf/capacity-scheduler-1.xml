@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!-- 
+	capacity-scheduler-1.xml 
+	Mark's queue gets 70% of capacity
+-->
+
+<configuration>
+
+<!-- Mark's Queue -->
+
+  <property>
+    <name>mapred.capacity-scheduler.queue.mark.capacity</name>
+    <value>70</value>
+    <description/>
+  </property>
+  
+  <property>
+    <name>mapred.capacity-scheduler.queue.mark.maximum-capacity</name>
+    <value>-1</value>
+    <description/>
+  </property>
+  
+  <property>
+    <name>mapred.capacity-scheduler.queue.mark.supports-priority</name>
+    <value>false</value>
+    <description/>
+  </property>
+
+  <property>
+    <name>mapred.capacity-scheduler.queue.mark.minimum-user-limit-percent</name>
+    <value>100</value>
+    <description/>
+  </property>
+
+  <property>
+    <name>mapred.capacity-scheduler.queue.mark.maximum-initialized-jobs-per-user</name>
+    <value>2</value>
+    <description/>
+  </property>
+
+
+<!-- Default Queue -->
+
+  <property>
+    <name>mapred.capacity-scheduler.queue.default.capacity</name>
+    <value>30</value>
+    <description/>
+  </property>
+  
+  <property>
+    <name>mapred.capacity-scheduler.queue.default.maximum-capacity</name>
+    <value>-1</value>
+    <description/>
+  </property>
+  
+  <property>
+    <name>mapred.capacity-scheduler.queue.default.supports-priority</name>
+    <value>false</value>
+    <description/>
+  </property>
+
+  <property>
+    <name>mapred.capacity-scheduler.queue.default.minimum-user-limit-percent</name>
+    <value>100</value>
+    <description/>
+  </property>
+
+  <property>
+    <name>mapred.capacity-scheduler.queue.default.maximum-initialized-jobs-per-user</name>
+    <value>2</value>
+    <description/>
+  </property>
+
+  <property>
+    <name>mapred.capacity-scheduler.default-supports-priority</name>
+    <value>false</value>
+    <description/>
+  </property>
+  
+  <property>
+    <name>mapred.capacity-scheduler.default-minimum-user-limit-percent</name>
+    <value>100</value>
+    <description/>
+  </property>
+
+  <property>
+    <name>mapred.capacity-scheduler.default-maximum-initialized-jobs-per-user</name>
+    <value>2</value>
+    <description/>
+  </property>
+
+  <!-- Capacity scheduler Job Initialization configuration parameters -->
+  <property>
+    <name>mapred.capacity-scheduler.init-poll-interval</name>
+    <value>5000</value>
+    <description>The amount of time in miliseconds which is used to poll 
+    the job queues for jobs to initialize.
+    </description>
+  </property>
+  <property>
+    <name>mapred.capacity-scheduler.init-worker-threads</name>
+    <value>5</value>
+    <description/>
+  </property>
+
+</configuration>
