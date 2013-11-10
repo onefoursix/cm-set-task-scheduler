@@ -59,3 +59,17 @@ The running Task Scheduler's queues and configurations can be seen in Job Tracke
 ![](images/image-3.jpg)
 
 
+####Create a directory to hold the task scheduler config files.  
+
+For this example I have placed three different task scheduler config files in a directory I created named /etc/cloudera-scm-server/task-scheduler-configs.  Change ownership of the directory and your config files to cloudera-scm:
+
+    # [root@mbrooks0 task-scheduler-configs]# pwd
+	/etc/cloudera-scm-server/task-scheduler-configs
+	
+	# ls -l
+	-rw-r----- 1 cloudera-scm cloudera-scm 2650 Nov  9 18:56 capacity-scheduler-1.xml
+	-rw-r--r-- 1 cloudera-scm cloudera-scm 2650 Nov  9 18:56 capacity-scheduler-2.xml
+	-rw-r--r-- 1 cloudera-scm cloudera-scm 2650 Nov  9 18:56 capacity-scheduler-3.xml
+
+
+
