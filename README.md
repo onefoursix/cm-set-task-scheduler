@@ -49,7 +49,7 @@ An initial set of queue names should also be set in advance. Queue names could b
 ![](images/image-2.jpg)
 
 
-I pasted the text of the first scheduler config "capacity-scheduler-1.xml" into CM's Capacity Scheduler Configuration.  Note that using this configuration the "mark" queue gets 70% capacity:
+I pasted the text of the first scheduler config "capacity-scheduler-1.xml" into CM's Capacity Scheduler Configuration.  This configuration gives the "mark" queue 70% capacity:
 
 ![](images/image-4.jpg)
 
@@ -74,7 +74,7 @@ I placed three different task scheduler config files in the directory /etc/cloud
 
 #### Set the CM connection settings and Cluster name.  
 
-Set the following properties in the script set-task-scheduler.py as needed:
+Set the following properties in the set-task-scheduler.py script as needed:
 
 	## Cloudera Manager Host
 	cm_host = "localhost"
@@ -98,7 +98,7 @@ Set the following properties in the script set-task-scheduler.py as needed:
 
 ####Run the script to set a different scheduler config
 
-To deploy capacity-scheduler-2.xml, execute the command:
+For example, to deploy capacity-scheduler-2.xml, execute the command:
 
 	# ./set-task-scheduler.py /etc/cloudera-scm-server/task-scheduler-configs/capacity-scheduler-2.xml
 
