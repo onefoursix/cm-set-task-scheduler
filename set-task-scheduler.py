@@ -10,7 +10,7 @@
 ##
 ##        for example:  set-task-scheduler.py conf/capacity-scheduler-1.xml
 ## 
-##        (the rest of the values are set in the script below)
+##        (CM connection properties are set in the script below)
 ## 
 ## *******************************************************************************************
 
@@ -20,11 +20,10 @@ import sys
 from cm_api.api_client import ApiResource
 
 
-
 ## ** Settings ******************************
 
 ## Cloudera Manager Host
-cm_host = "mbrooks0.onefoursix.com"
+cm_host = "localhost"
 cm_port = "7180"
 
 ## Cloudera Manager login
@@ -36,15 +35,11 @@ cm_password = "admin"
 ## Cluster Name
 cluster_name = "Cluster 1 - CDH4"
 
-## Name of MapReduce Service
-mr_service_name = "mapreduce1"
-
 ## Service config property name
 config_property_name = "mapred_capacity_scheduler_configuration"   # Capacity Scheduler config property name
 # config_property_name = "mapred_fairscheduler_allocation"         # Fair Scheduler config property name
 
 ## ******************************************
-
 
 if len(sys.argv) != 2:
   print "Error: Wrong number of arguments"
@@ -53,9 +48,9 @@ if len(sys.argv) != 2:
   quit(1)
 
 
-config_file =  sys.argv[1]
+config_file = sys.argv[1]
 
-print "Setting task scheduler config file '" + config_file + "' for MapReduce Service '" + mr_service_name + "' on cluster '" + cluster_name + "'..."
+print "\n\nSetting task scheduler config file: " + config_file
 
 ## load the task scheduler config file
 f = open(config_file,'r')
@@ -66,31 +61,38 @@ while 1:
     task_scheduler_conf += line
 f.close()
 
-print "-- loading new config --------------------------"
-print task_scheduler_conf
-print "------------------------------------------------"
-
-
-
 ## Get the CM api
 api = ApiResource(server_host=cm_host, server_port=cm_port, username=cm_login, password=cm_password)
 
 ## Get the cluster
 cluster = api.get_cluster(cluster_name)
+print "Cluster:  + cluster_name
+
 
 ## Get the MR Service
-mr_service = cluster.get_service(mr_service_name)
+for service in cluster.get_all_services():
+  if service.type == "MAPREDUCE":
+    mr_service = service
 
-## Get the JobTracker
-for role in mr_service.get_all_roles():
-#  if role.type == 'JOBTRACKER':
-   print "role:" + role.type + " " + role.name  
-   job_tracker = role
+print "MapReduce Service :" + mr_service.name 
 
-## Set the task scheduler config in the MR Service
-#job_tracker.update_config({config_property_name : task_scheduler_conf})
-mr_service.update_config({config_property_name : task_scheduler_conf})
+
+## Get the JobTracker base config group
+for role_config_group in mr_service.get_all_role_config_groups():
+  if role_config_group.name == mr_service.name + "-JOBTRACKER-BASE":
+    job_tracker_base = role_config_group
+
+## Set the task scheduler in the base config of the MR Service
+job_tracker_base.update_config({config_property_name : task_scheduler_conf})
 
 print "New task scheduler configuration set\n"
-print "Refreshing the Job Tracker"
-print "Done"
+
+## Refresh the JobTracker(s)
+for role in mr_service.get_all_roles():
+  if role.type == "JOBTRACKER":
+    print "Refreshing the Job Tracker on " + role.hostRef.hostId
+    mr_service.refresh(role.name)
+
+print "Job Tracker(s) refreshed\n"
+
+print "Done\n\n"

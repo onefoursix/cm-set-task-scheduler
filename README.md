@@ -18,23 +18,24 @@ More information: [Cloudera Manager](http://www.cloudera.com/content/cloudera/en
 - CM API must be installed (see below)
 
 
-####Install Python setuptools
+####Install Python setuptools and unzip
 On CentOS:
 
     # yum -y install python-setuptools
+    # yum -y install unzip
 
 
 ####Download and Install the Cloudera Manager API Client
-Download the CM API Client:
+Download the CM API Client for your version of CM.  I am using CM 4.7.2, I wil download the cm-4.7 version of the API:
 
     # wget wget https://github.com/cloudera/cm_api/archive/cm-4.7.zip
-    # tar -xvf master
+    # unzip cm-4.7
 
-This will give you a dir named something like <code>cloudera-cm_api-d5e8ac0<code>
+This will give you a dir named <code>cm_api-cm-4.7<code>
 
 Change to the cm-api's python directory and install the CM-API module (see the README and SHELL_README for additional details):
 
-    # cd cloudera-cm_api-d5e8ac0/python
+    # cd cm_api-cm-4.7/python
     # python setup.py install
 
 ####Prerequisites
