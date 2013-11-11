@@ -44,7 +44,7 @@ This example assumes you have already set a Task Scheduler.  In this example I h
 ![](images/image-1.jpg)
 
 
-An initial set of queue names should also be set in advance. Queue names could be set along with the scheduler configs, but in this example the queue names are static; the same queues are simply weighted differently by the different schedulers:
+An initial set of queue names should also be set in advance. Queue names could be set along with the scheduler configs, but in this example the queue names are static; the same queues are simply weighted differently by the different scheduler configurations:
 
 ![](images/image-2.jpg)
 
