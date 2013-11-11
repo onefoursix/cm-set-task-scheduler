@@ -50,7 +50,7 @@ if len(sys.argv) != 2:
 
 config_file = sys.argv[1]
 
-print "\n\nSetting task scheduler config file: " + config_file
+print "\nSetting task scheduler config file: " + config_file
 
 ## load the task scheduler config file
 f = open(config_file,'r')
@@ -66,7 +66,7 @@ api = ApiResource(server_host=cm_host, server_port=cm_port, username=cm_login, p
 
 ## Get the cluster
 cluster = api.get_cluster(cluster_name)
-print "Cluster:  + cluster_name
+print "Cluster: " + cluster_name
 
 
 ## Get the MR Service
@@ -85,7 +85,7 @@ for role_config_group in mr_service.get_all_role_config_groups():
 ## Set the task scheduler in the base config of the MR Service
 job_tracker_base.update_config({config_property_name : task_scheduler_conf})
 
-print "New task scheduler configuration set\n"
+print "\nNew task scheduler configuration set\n"
 
 ## Refresh the JobTracker(s)
 for role in mr_service.get_all_roles():
@@ -93,6 +93,4 @@ for role in mr_service.get_all_roles():
     print "Refreshing the Job Tracker on " + role.hostRef.hostId
     mr_service.refresh(role.name)
 
-print "Job Tracker(s) refreshed\n"
-
-print "Done\n\n"
+print "\nDone\n\n"

@@ -2,7 +2,7 @@
 cm-set-task-scheduler
 =======================
 
-This project provides an example of using Cloudera Manager's Python API Client to set a MapReduce Task Scheduler configuration file and to refresh a running JobTracker so the new scheduler configuration is put into effect.  This functionality may be desirable for shops that wish to dynamically change queue capacities or limits at different times of day, for example to allow certain batch jobs to consume a higher percentage or resources between midnight and 3:00am than during working hours.
+This project provides an example of using Cloudera Manager's Python API Client to set a MapReduce Task Scheduler configuration file and to refresh a running JobTracker so the new scheduler configuration is put into effect.  This functionality may be desirable for shops that wish to change queue capacities or limits at different times of day.
 
 More information: [Cloudera Manager](http://www.cloudera.com/content/cloudera/en/products/cloudera-manager.html), [CM API Client](http://cloudera.github.io/cm_api/)
 
@@ -26,7 +26,7 @@ On CentOS:
 
 
 ####Download and Install the Cloudera Manager API Client
-Download the CM API Client for your version of CM.  I am using CM 4.7.2, I wil download the cm-4.7 version of the API:
+Download the CM API Client for your version of CM.  I am using CM 4.7.2, so I will use the cm-4.7 version of the API:
 
     # wget wget https://github.com/cloudera/cm_api/archive/cm-4.7.zip
     # unzip cm-4.7
@@ -45,7 +45,7 @@ This example assumes you have already set a Task Scheduler.  In this example I h
 ![](images/image-1.jpg)
 
 
-An initial set of queue names should also be set in advance.  In this example, the two queue named "default" and "mark" remain constant across the different scheduler configurations.  Queue names could be set dynamically along with the scheduler configs, but in this example they are static; the same queues are simply configured differently by the different schedulers.  :
+An initial set of queue names should also be set in advance.  In this example, the two queue named "default" and "mark" exist in the different scheduler configurations.  Queue names could be set along with the scheduler configs, but in this example they are static; the same queues are simply weighted differently by the different schedulers:
 
 ![](images/image-2.jpg)
 
@@ -55,14 +55,14 @@ Finally, I have started this example by copying the text of my first scheduler c
 ![](images/image-4.jpg)
 
 
-The running Task Scheduler's queues and configurations can be seen in Job Tracker's UI.  Note that the "mark" queue gets 70% of capacity:
+The running Task Scheduler's queues and configurations can be seen in Job Tracker's Web UI.  Note that the "mark" queue gets 70% of capacity:
 
 ![](images/image-3.jpg)
 
 
 ####Create a directory to hold the task scheduler config files.  
 
-For this example I have placed three different task scheduler config files in a directory I created named /etc/cloudera-scm-server/task-scheduler-configs.  Change ownership of the directory and your config files to cloudera-scm:
+For this example I have placed three different task scheduler config files in a directory I created named /etc/cloudera-scm-server/task-scheduler-configs  (the location is not critical):
 
     # [root@mbrooks0 task-scheduler-configs]# pwd
 	/etc/cloudera-scm-server/task-scheduler-configs
@@ -71,6 +71,30 @@ For this example I have placed three different task scheduler config files in a 
 	-rw-r----- 1 cloudera-scm cloudera-scm 2650 Nov  9 18:56 capacity-scheduler-1.xml
 	-rw-r--r-- 1 cloudera-scm cloudera-scm 2650 Nov  9 18:56 capacity-scheduler-2.xml
 	-rw-r--r-- 1 cloudera-scm cloudera-scm 2650 Nov  9 18:56 capacity-scheduler-3.xml
+
+
+
+####Run the script to set capacity-scheduler-2.xml
+
+To deploy capacity-scheduler-2.xml, execute the command:
+
+	# ./set-task-scheduler.py /etc/cloudera-scm-server/task-scheduler-configs/capacity-scheduler-2.xml
+
+ 
+You should see output like this:
+
+	# ./set-task-scheduler.py /etc/cloudera-scm-server/task-scheduler-configs/capacity-scheduler-2.xml 
+
+	Setting task scheduler config file: /etc/cloudera-scm-server/task-scheduler-configs/capacity-scheduler-2.xml
+	Cluster: Cluster 1 - CDH4
+	MapReduce Service :mapreduce1
+
+	New task scheduler configuration set
+
+	Refreshing the Job Tracker on mbrooks0.onefoursix.com
+
+	Done
+
 
 
 
