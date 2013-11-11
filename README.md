@@ -109,7 +109,7 @@ You should see output like this:
 
 	Setting task scheduler config file: /etc/cloudera-scm-server/task-scheduler-configs/capacity-scheduler-2.xml
 	Cluster: Cluster 1 - CDH4
-	MapReduce Service :mapreduce1
+	MapReduce Service: mapreduce1
 
 	New task scheduler configuration set
 
