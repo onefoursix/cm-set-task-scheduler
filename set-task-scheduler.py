@@ -80,7 +80,7 @@ for role_config_group in mr_service.get_all_role_config_groups():
   if role_config_group.name == mr_service.name + "-JOBTRACKER-BASE":
     job_tracker_base = role_config_group
 
-## Set the task scheduler in the base config of the MR Service
+## Set the task scheduler config 
 job_tracker_base.update_config({config_property_name : task_scheduler_conf})
 
 print "\nNew task scheduler configuration set\n"
