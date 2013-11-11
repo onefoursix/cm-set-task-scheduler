@@ -1,4 +1,3 @@
-
 cm-set-task-scheduler
 =======================
 
@@ -73,9 +72,9 @@ I placed three different task scheduler config files in the directory /etc/cloud
 	-rw-r--r-- 1 cloudera-scm cloudera-scm 2650 Nov  9 18:56 capacity-scheduler-3.xml
 
 
-####Edit the CM connection settings and Cluster name in the script .  
+#### Set the CM connection settings and Cluster name.  
 
-Edit the following properties in the script as needed:
+Set the following properties in the script set-task-scheduler.py as needed:
 
 	## Cloudera Manager Host
 	cm_host = "localhost"
