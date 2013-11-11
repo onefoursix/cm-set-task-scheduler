@@ -76,7 +76,6 @@ for service in cluster.get_all_services():
 
 print "MapReduce Service :" + mr_service.name 
 
-
 ## Get the JobTracker base config group
 for role_config_group in mr_service.get_all_role_config_groups():
   if role_config_group.name == mr_service.name + "-JOBTRACKER-BASE":

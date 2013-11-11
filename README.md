@@ -74,6 +74,7 @@ I placed three different task scheduler config files in the directory /etc/cloud
 
 
 
+
 ####Run the script to set a different scheduler config
 
 To deploy capacity-scheduler-2.xml, execute the command:
@@ -95,6 +96,11 @@ You should see output like this:
 
 	Done
 
+
+
+The updated Task Scheduler's queues and configurations can now be seen in Job Tracker's Web UI:
+
+![](images/image-5.jpg)
 
 
 
