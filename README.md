@@ -27,7 +27,7 @@ On CentOS:
 ####Download and Install the Cloudera Manager API Client
 Download the CM API Client for your version of CM.  I am using CM 4.7.2, so I will use the cm-4.7 version of the API:
 
-    # wget wget https://github.com/cloudera/cm_api/archive/cm-4.7.zip
+    # wget https://github.com/cloudera/cm_api/archive/cm-4.7.zip
     # unzip cm-4.7
 
 This will create a dir named cm_api-cm-4.7
