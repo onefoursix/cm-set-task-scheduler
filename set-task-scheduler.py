@@ -68,7 +68,6 @@ api = ApiResource(server_host=cm_host, server_port=cm_port, username=cm_login, p
 cluster = api.get_cluster(cluster_name)
 print "Cluster: " + cluster_name
 
-
 ## Get the MR Service
 for service in cluster.get_all_services():
   if service.type == "MAPREDUCE":
