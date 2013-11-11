@@ -31,7 +31,7 @@ Download the CM API Client for your version of CM.  I am using CM 4.7.2, so I wi
     # wget wget https://github.com/cloudera/cm_api/archive/cm-4.7.zip
     # unzip cm-4.7
 
-This will give you a dir named <code>cm_api-cm-4.7<code>
+This will create a dir named cm_api-cm-4.7
 
 Change to the cm-api's python directory and install the CM-API module (see the README and SHELL_README for additional details):
 
@@ -45,24 +45,24 @@ This example assumes you have already set a Task Scheduler.  In this example I h
 ![](images/image-1.jpg)
 
 
-An initial set of queue names should also be set in advance.  In this example, the two queues named "default" and "mark" exist in the different scheduler configurations.  Queue names could be set along with the scheduler configs, but in this example they are static; the same queues are simply weighted differently by the different schedulers:
+An initial set of queue names should also be set in advance. Queue names could be set along with the scheduler configs, but in this example the queue names are static; the same queues are simply weighted differently by the different schedulers:
 
 ![](images/image-2.jpg)
 
 
-Finally, I have started this example by copying the text of my first scheduler config "capacity-scheduler-1.xml" into CM's Capacity Scheduler Configuration.  Note that using this configuration the "mark" queue gets 70% capacity:
+I have started this example by copying the text of the first scheduler config "capacity-scheduler-1.xml" into CM's Capacity Scheduler Configuration.  Note that using this configuration the "mark" queue gets 70% capacity:
 
 ![](images/image-4.jpg)
 
 
-The running Task Scheduler's queues and configurations can be seen in Job Tracker's Web UI.  Note that the "mark" queue gets 70% of capacity:
+The running Task Scheduler's queues and configurations can be seen in Job Tracker's Web UI:
 
 ![](images/image-3.jpg)
 
 
 ####Create a directory to hold the task scheduler config files.  
 
-For this example I have placed three different task scheduler config files in a directory I created named /etc/cloudera-scm-server/task-scheduler-configs  (the location is not critical):
+I placed three different task scheduler config files in the directory /etc/cloudera-scm-server/task-scheduler-configs  (the location is not critical):
 
     # [root@mbrooks0 task-scheduler-configs]# pwd
 	/etc/cloudera-scm-server/task-scheduler-configs
