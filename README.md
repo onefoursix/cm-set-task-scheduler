@@ -74,7 +74,7 @@ I placed three different task scheduler config files in the directory /etc/cloud
 
 
 
-####Run the script to set capacity-scheduler-2.xml
+####Run the script to set a different scheduler config
 
 To deploy capacity-scheduler-2.xml, execute the command:
 
