@@ -73,6 +73,28 @@ I placed three different task scheduler config files in the directory /etc/cloud
 	-rw-r--r-- 1 cloudera-scm cloudera-scm 2650 Nov  9 18:56 capacity-scheduler-3.xml
 
 
+####Edit the CM connection settings and Cluster name in the script .  
+
+Edit the following properties in the script as needed:
+
+	## Cloudera Manager Host
+	cm_host = "localhost"
+	cm_port = "7180"
+
+	## Cloudera Manager login
+	cm_login = "admin"
+
+	## Cloudera Manager password
+	cm_password = "admin"
+
+	## Cluster Name
+	cluster_name = "Cluster 1 - CDH4"
+
+	## Service config property name
+	config_property_name = "mapred_capacity_scheduler_configuration"   # Capacity Scheduler config property name
+	# config_property_name = "mapred_fairscheduler_allocation"         # Fair Scheduler config property name
+
+
 
 
 ####Run the script to set a different scheduler config
