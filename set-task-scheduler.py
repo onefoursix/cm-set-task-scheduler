@@ -80,6 +80,7 @@ print "MapReduce Service: " + mr_service.name
 for role_config_group in mr_service.get_all_role_config_groups():
   if role_config_group.name == mr_service.name + "-JOBTRACKER-BASE":
     job_tracker_base = role_config_group
+    break
 
 ## Set the task scheduler config 
 job_tracker_base.update_config({config_property_name : task_scheduler_conf})
