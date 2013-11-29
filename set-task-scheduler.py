@@ -72,6 +72,7 @@ print "Cluster: " + cluster_name
 for service in cluster.get_all_services():
   if service.type == "MAPREDUCE":
     mr_service = service
+    break
 
 print "MapReduce Service: " + mr_service.name 
 
